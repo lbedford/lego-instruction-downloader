@@ -3,7 +3,7 @@
 DIR=~/Documents/LEGO
 grep -v ^# $DIR/ids.txt  | grep -v ^$ | while read ID ; do 
   if [ ! -d $DIR/$ID/ ] ; then
-    ./lego-instruction-downloader --id $ID
+    go run lego-instruction-downloader.go --id $ID
     if [ ! -d $DIR/$ID/ ] ; then
       echo "Failed to download $ID" >> $DIR/failures.txt
     fi
