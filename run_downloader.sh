@@ -1,10 +1,11 @@
 #!/bin/bash
 
-grep -v ^# ids.txt  | grep -v ^$ | while read ID ; do 
-  if [ ! -d ~/Documents/LEGO/$ID/ ] ; then
+DIR=~/Documents/LEGO
+grep -v ^# $DIR/ids.txt  | grep -v ^$ | while read ID ; do 
+  if [ ! -d $DIR/$ID/ ] ; then
     ./lego-instruction-downloader --id $ID
-    if [ ! -d ~/Documents/LEGO/$ID/ ] ; then
-      echo "Failed to download $ID" >> failures.txt
+    if [ ! -d $DIR/$ID/ ] ; then
+      echo "Failed to download $ID" >> $DIR/failures.txt
     fi
   else
     echo "$ID is already downloaded"
