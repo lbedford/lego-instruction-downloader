@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/beevik/etree"
+	"github.com/mitchellh/go-homedir"
 	"gopkg.in/yaml.v2"
 	"io"
 	"io/ioutil"
@@ -15,6 +16,7 @@ import (
 )
 
 var id = flag.String("id", "0", "The set to find instructions for")
+var config = flag.String("config", "", "Path to config file")
 
 type conf struct {
 	ApiKey       string `yaml:"api_key"`
@@ -151,7 +153,14 @@ func download(url string, dirPath string, fileName string) {
 }
 
 func main() {
-	yamlFile, err := ioutil.ReadFile("/home/lbedford/.lego-instructions.yml")
+	if len(*config) == 0 {
+	  home, err := homedir.Dir()
+          if err != nil {
+		  log.Fatal("Failed to find homedir")
+          }
+	  *config = filepath.Join(home, ".lego-instructions.yml")
+        }
+	yamlFile, err := ioutil.ReadFile(*config)
 	if err != nil {
 		log.Printf("yamlFile.Get err   #%v ", err)
 	}
