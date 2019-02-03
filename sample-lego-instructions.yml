@@ -1,0 +1,7 @@
+api_key: 'BRICKSET_API_KEY'
+api_url: 'https://brickset.com/api/v2.asmx'
+papersize: 'V39'
+password: 'BRICKSET_USERNAME'
+username: 'BRICKSET_PASSWORD'
+
+download_path: '/path/to/LEGO/Instructions'
